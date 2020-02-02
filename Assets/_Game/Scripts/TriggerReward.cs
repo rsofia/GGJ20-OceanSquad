@@ -23,7 +23,11 @@ public class TriggerReward : MonoBehaviour
     private const string triggerPressed = "Pressed";
     private const string triggerReleased = "Release";
 
+    public Color notActivated;
+    public Color activated;
+
     private Animator anim;
+    private Light myLight;
 
     public enum RewardType
     {
@@ -35,6 +39,8 @@ public class TriggerReward : MonoBehaviour
     {
         tagToDetect = GameConsts.GetTagWithEnum(gameTagToDetect);
         anim = GetComponent<Animator>();
+        myLight = GetComponentInChildren<Light>();
+        myLight.color = notActivated;
     }
     private IEnumerator OnTriggerStay(Collider other)
     {
@@ -43,6 +49,7 @@ public class TriggerReward : MonoBehaviour
         {
             anim.SetTrigger(triggerPressed);
             wasActivated = true;
+            myLight.color = activated;
             yield return new WaitForSeconds(timeToActivate);
             OnRewardTriggred();
         }
@@ -53,6 +60,7 @@ public class TriggerReward : MonoBehaviour
         if(wasActivated)
         {
             wasActivated = false;
+            myLight.color = notActivated;
             anim.SetTrigger(triggerReleased);
             objectToActivate.GetComponent<Animator>().SetTrigger(triggerActionClose);
         }
