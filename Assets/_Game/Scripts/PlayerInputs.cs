@@ -35,8 +35,6 @@ public class PlayerInputs : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Player"))
                     return;
-                Debug.Log("I AM SENDING POSITION");
-                Debug.Log("I HIT: " + hit.transform.name);
                 Position = new Vector3(hit.point.x, Position.y, hit.point.z);
             }
         }

@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject Camera;
 
+    public GameObject Player;
+
+    public bool gameOver = false;
+
     private static GameManager _gameManager;
     public static GameManager Instance
     {
@@ -34,11 +38,26 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
-        for (int i = 0; i < Torches.Length; i++)
-            Torches[i].SetActive(false);
+        /*for (int i = 0; i < Torches.Length; i++)
+            Torches[i].transform.parent.gameObject.SetActive(false);*/
+        gameOver = true;
+        Player.GetComponentInChildren<Animator>().SetTrigger("Win");
+        Camera.GetComponent<Assets.Pixelation.Scripts.Pixelation>().enabled = false;
+    }
 
-        FinalLight.SetActive(true);
+    public void TurnLightUp()
+    {
+        StartCoroutine(GradualIncrease());
+    }
 
-        Camera.GetComponent<Assets.Pixelation.Scripts.Pixelation>().BlockCount = 512;
+    IEnumerator GradualIncrease()
+    {
+        float initialIntensity = FinalLight.GetComponent<Light>().intensity;
+
+        while(FinalLight.GetComponent<Light>().intensity < (initialIntensity+ 0.15f))
+        {
+            FinalLight.GetComponent<Light>().intensity += 0.15f * Time.deltaTime;
+            yield return null;
+        }
     }
 }

@@ -10,16 +10,20 @@ public class PlayerMotor : MonoBehaviour
     private PlayerInputs playerInput;
     private PlayerStats playerStats;
     private Rigidbody playerRB;
-
+    private Animator playerAnim;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInputs>();
         playerStats = GetComponent<PlayerStats>();
         playerRB = GetComponent<Rigidbody>();
+        playerAnim = GetComponentInChildren<Animator>();
     }
 
     void FixedUpdate()
     {
+        /*if (GameManager.Instance.gameOver)
+            return;*/
+
 #if UNITY_ANDROID || UNITY_EDITOR
         Vector3 pos = playerInput.Position;
         //RB Not working for some reason
@@ -29,9 +33,11 @@ public class PlayerMotor : MonoBehaviour
         {
             transform.position = GetPosition(pos, transform.position);
             transform.LookAt(pos);
-
+            playerAnim.SetBool("Jog", true);
             Debug.Log("I AM WORKING");
         }
+        else
+            playerAnim.SetBool("Jog", false);
 
 
 #elif UNITY_STANDALONE_WIN
@@ -62,6 +68,7 @@ public class PlayerMotor : MonoBehaviour
             playerStats.LightCounter++;
             collision.transform.parent.GetComponent<TorchProperties>().TorchLit.SetActive(true);
             collision.transform.parent.GetComponent<TorchProperties>().TorchUnlit.SetActive(false);
+            GameManager.Instance.TurnLightUp();
 
             if (playerStats.LightCounter >= GameManager.Instance.Torches.Length)
                 GameManager.Instance.WinLevel();
