@@ -16,7 +16,7 @@ public class PlayerInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_ANDROID || UNITY_EDITOR
+
         /*Debug.Log(Input.touches.Length);
         if (Input.touches.Length > 0)
         {
@@ -38,10 +38,5 @@ public class PlayerInputs : MonoBehaviour
                 Position = new Vector3(hit.point.x, Position.y, hit.point.z);
             }
         }
-
-#elif UNITY_STANDALONE_WIN
-        Rotation = Input.GetAxis("Horizontal");
-        Thrust = Input.GetAxis("Vertical");
-#endif
     }
 }
