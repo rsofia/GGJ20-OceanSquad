@@ -21,8 +21,8 @@ public class PlayerMotor : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*if (GameManager.Instance.gameOver)
-            return;*/
+        if (GameManager.Instance.gameOver)
+            return;
 
 #if UNITY_ANDROID || UNITY_EDITOR
         Vector3 pos = playerInput.Position;
@@ -73,6 +73,19 @@ public class PlayerMotor : MonoBehaviour
             if (playerStats.LightCounter >= GameManager.Instance.Torches.Length)
                 GameManager.Instance.WinLevel();
             
+        }
+
+        if(collision.transform.CompareTag(GameConsts.rockTag))
+        {
+            playerAnim.SetBool("Push", true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.CompareTag(GameConsts.rockTag))
+        {
+            playerAnim.SetBool("Push", false);
         }
     }
 }
