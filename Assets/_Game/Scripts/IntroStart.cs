@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class IntroStart : MonoBehaviour
@@ -9,6 +10,8 @@ public class IntroStart : MonoBehaviour
     public AnimationCurve curve;
 
     int current = 0;
+
+    public float timeToLoadScene = 1.0f;
 
     public void Start()
     {
@@ -27,8 +30,9 @@ public class IntroStart : MonoBehaviour
         StartCoroutine(LerpSize(txtOrder[current], curve));
         current++;
         if (current >= txtOrder.Length)
-            current = 0;
-        txtOrder[current].txt.gameObject.SetActive(true);
+            StartCoroutine(LoadScene(1));
+        else
+            txtOrder[current].txt.gameObject.SetActive(true);
     }
 
     [System.Serializable]
@@ -38,6 +42,18 @@ public class IntroStart : MonoBehaviour
         //public AnimationCurve curve;
         [HideInInspector]
         public bool isOnLerp;
+    }
+
+    IEnumerator LoadScene(int index)
+    {
+        yield return new WaitForSeconds(timeToLoadScene);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 
     /// <summary>
