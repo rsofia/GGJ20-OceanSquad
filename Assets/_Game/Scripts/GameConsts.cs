@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameConsts
+public  static class GameConsts
 {
     public const string playerTag = "Player";
     public const string rockTag = "Rock";
@@ -46,5 +46,10 @@ public class GameConsts
     public static void LogBoldColor(string color, string text)
     {
         Debug.Log("<b><color=" + color + ">" + text + "</color></b>");
+    }
+
+    public static Color SetAlpha(this Color color, float alphaValue)
+    {
+        return new Color(color.r, color.g, color.b, alphaValue);
     }
 }
