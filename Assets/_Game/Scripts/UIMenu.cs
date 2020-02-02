@@ -7,6 +7,9 @@ public class UIMenu : MonoBehaviour
 {
     public float timeToQuit = 2.0f;
 
+    [Header("Start")]
+    public GameObject startPanel;
+
     [Header("Options")]
     public GameObject optionsPanel;
 
@@ -15,7 +18,7 @@ public class UIMenu : MonoBehaviour
 
     public void OnStart()
     {
-
+        startPanel.SetActive(true);
     }
 
     public void OnClickOptions()
