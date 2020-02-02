@@ -384,7 +384,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.1289605, g: 0.13017188, b: 0.13207549, a: 0}
+  m_BackGroundColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -460,9 +460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5675b73e45918498f903e19a501856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animStart: {fileID: 0}
-  animButton: {fileID: 0}
-  animExit: {fileID: 0}
 --- !u!4 &1120737537
 Transform:
   m_ObjectHideFlags: 0
@@ -588,6 +585,7 @@ GameObject:
   - component: {fileID: 1738971425}
   - component: {fileID: 1738971427}
   - component: {fileID: 1738971426}
+  - component: {fileID: 1738971428}
   m_Layer: 5
   m_Name: TXT_GameTitle
   m_TagString: Untagged
@@ -733,6 +731,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738971424}
   m_CullTransparentMesh: 0
+--- !u!95 &1738971428
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738971424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da608ea5d9d184e4d9f8f25844775deb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1990651453
 PrefabInstance:
   m_ObjectHideFlags: 0
