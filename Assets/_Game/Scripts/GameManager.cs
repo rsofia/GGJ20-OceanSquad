@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player;
 
+    public GameObject gameOverPanel;
+
     public bool gameOver = false;
 
     private static GameManager _gameManager;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
         /*for (int i = 0; i < Torches.Length; i++)
             Torches[i].transform.parent.gameObject.SetActive(false);*/
         gameOver = true;
+        gameOverPanel.SetActive(true);
         Player.GetComponentInChildren<Animator>().SetTrigger("Win");
         Camera.GetComponent<Assets.Pixelation.Scripts.Pixelation>().enabled = false;
     }
@@ -59,5 +62,10 @@ public class GameManager : MonoBehaviour
             FinalLight.GetComponent<Light>().intensity += 0.15f * Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void GoToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

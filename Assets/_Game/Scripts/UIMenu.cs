@@ -41,6 +41,7 @@ public class UIMenu : MonoBehaviour
     IEnumerator Exit()
     {
         yield return new WaitForSeconds(timeToQuit);
+        GameConsts.LogColor("red", "Bye bye");
         Application.Quit();
     }
 }
