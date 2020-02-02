@@ -62,12 +62,12 @@ public class PlayerMotor : MonoBehaviour
     {
         Debug.Log(collision.transform.tag);
 
-        if(collision.transform.CompareTag("Torch"))
+        if(collision.transform.CompareTag("Torch") && collision.transform.parent.GetComponent<TorchProperties>().TorchLit.activeSelf == false)
         {
             Debug.Log("I GOT A TORCH!");
             playerStats.LightCounter++;
             collision.transform.parent.GetComponent<TorchProperties>().TorchLit.SetActive(true);
-            collision.transform.parent.GetComponent<TorchProperties>().TorchUnlit.SetActive(false);
+            //collision.transform.parent.GetComponent<TorchProperties>().TorchUnlit.SetActive(false);
             GameManager.Instance.TurnLightUp();
 
             if (playerStats.LightCounter >= GameManager.Instance.Torches.Length)
