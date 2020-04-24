@@ -4,8 +4,8 @@ using UnityEngine;
 
 public  static class GameConsts
 {
-    public const string playerTag = "Player";
-    public const string rockTag = "Rock";
+    public const string PlayerTag = "Player";
+    public const string RockTag = "Rock";
 
     public enum GameTags
     {
@@ -20,10 +20,10 @@ public  static class GameConsts
         switch (t)
         {
             case GameTags.Player:
-                result = playerTag;
+                result = PlayerTag;
                 break;
             case GameTags.Rock:
-                result = rockTag;
+                result = RockTag;
                 break;
             default:
                 result = "";

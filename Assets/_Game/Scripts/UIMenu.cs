@@ -5,42 +5,41 @@ using Doozy.Engine;
 
 public class UIMenu : MonoBehaviour
 {
-    public float timeToQuit = 2.0f;
+    public float TimeToQuit = 2.0f;
 
     [Header("Start")]
-    public GameObject startPanel;
+    public GameObject StartPanel;
 
     [Header("Options")]
-    public GameObject optionsPanel;
+    public GameObject OptionsPanel;
 
     [Header("Thank you")]
-    public Doozy.Engine.UI.UIView thankyouView;
+    public Doozy.Engine.UI.UIView ThankyouView;
 
     public void OnStart()
     {
-        startPanel.SetActive(true);
+        StartPanel.SetActive(true);
     }
 
     public void OnClickOptions()
     {
-        optionsPanel.SetActive(true);
+        OptionsPanel.SetActive(true);
     }
 
     public void OnHideOptions()
     {
-        optionsPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
     }
 
     public void OnExit()
     {
-        thankyouView.Show();
+        ThankyouView.Show();
         StartCoroutine(Exit());
-
     }
 
     IEnumerator Exit()
     {
-        yield return new WaitForSeconds(timeToQuit);
+        yield return new WaitForSeconds(TimeToQuit);
         GameConsts.LogColor("red", "Bye bye");
         Application.Quit();
     }

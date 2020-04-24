@@ -35,17 +35,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Torches = GameObject.FindGameObjectsWithTag("Torch");
-        print(Torches);
     }
 
     public void WinLevel()
     {
-        /*for (int i = 0; i < Torches.Length; i++)
-            Torches[i].transform.parent.gameObject.SetActive(false);*/
         gameOver = true;
         gameOverPanel.SetActive(true);
         Player.GetComponentInChildren<Animator>().SetTrigger("Win");
-        Camera.GetComponent<Assets.Pixelation.Scripts.Pixelation>().enabled = false;
+        //Camera.GetComponent<Assets.Pixelation.Scripts.Pixelation>().enabled = false;
     }
 
     public void TurnLightUp()

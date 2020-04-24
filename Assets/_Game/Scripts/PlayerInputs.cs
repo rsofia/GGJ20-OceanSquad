@@ -13,18 +13,9 @@ public class PlayerInputs : MonoBehaviour
         Position = transform.position;
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
-
-        /*Debug.Log(Input.touches.Length);
-        if (Input.touches.Length > 0)
-        {
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
-            Debug.Log("POS: " + touchPos);
-            Position = new Vector3(touchPos.x, transform.position.y, touchPos.z);
-        }*/
-
         if(Input.GetMouseButton(0))
         {
             RaycastHit hit;

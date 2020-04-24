@@ -11,6 +11,7 @@ public class PlayerMotor : MonoBehaviour
     private PlayerStats playerStats;
     private Rigidbody playerRB;
     private Animator playerAnim;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInputs>();
@@ -34,19 +35,9 @@ public class PlayerMotor : MonoBehaviour
             transform.position = GetPosition(pos, transform.position);
             transform.LookAt(pos);
             playerAnim.SetBool("Jog", true);
-            Debug.Log("I AM WORKING");
         }
         else
             playerAnim.SetBool("Jog", false);
-
-
-/*#elif UNITY_STANDALONE_WIN
-        float rotation = playerInput.Rotation;
-        float thrust = playerInput.Thrust;
-
-        transform.Rotate(Vector3.up * rotation * Time.deltaTime * turnSpeed);
-        transform.position += transform.forward * thrust * Time.deltaTime * moveSpeed;*/
-
     }
 
     public Vector3 GetPosition(Vector3 _position, Vector3 _initialPos)
@@ -60,23 +51,20 @@ public class PlayerMotor : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.transform.tag);
-
         if(collision.transform.CompareTag("Torch") && collision.transform.parent.GetComponent<TorchProperties>().TorchLit.activeSelf == false)
         {
             Debug.Log("I GOT A TORCH!");
             playerStats.LightCounter++;
             collision.transform.parent.GetComponent<TorchProperties>().TorchLit.SetActive(true);
             collision.transform.parent.GetComponent<AudioSource>().Play();
-            //collision.transform.parent.GetComponent<TorchProperties>().TorchUnlit.SetActive(false);
+
             GameManager.Instance.TurnLightUp();
 
             if (playerStats.LightCounter >= GameManager.Instance.Torches.Length)
-                GameManager.Instance.WinLevel();
-            
+                GameManager.Instance.WinLevel();          
         }
 
-        if(collision.transform.CompareTag(GameConsts.rockTag))
+        if(collision.transform.CompareTag(GameConsts.RockTag))
         {
             playerAnim.SetBool("Push", true);
         }
@@ -84,7 +72,7 @@ public class PlayerMotor : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.transform.CompareTag(GameConsts.rockTag))
+        if (collision.transform.CompareTag(GameConsts.RockTag))
         {
             playerAnim.SetBool("Push", false);
         }

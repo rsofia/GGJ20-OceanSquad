@@ -9,7 +9,7 @@ public class TriggerReward : MonoBehaviour
     private bool wasActivated = false;
     public float timeToActivate = 1.0f;
     private string tagToDetect = "";
-    public GameConsts.GameTags gameTagToDetect;
+    public GameConsts.GameTags GameTagToDetect;
 
     [Header("Reward")]
     public RewardType reward;
@@ -37,11 +37,12 @@ public class TriggerReward : MonoBehaviour
 
     private void Awake()
     {
-        tagToDetect = GameConsts.GetTagWithEnum(gameTagToDetect);
+        tagToDetect = GameConsts.GetTagWithEnum(GameTagToDetect);
         anim = GetComponent<Animator>();
         myLight = GetComponentInChildren<Light>();
         myLight.color = notActivated;
     }
+
     private IEnumerator OnTriggerStay(Collider other)
     {
         GameConsts.LogBoldColor("blue", ("Colliding with " + other.tag));
